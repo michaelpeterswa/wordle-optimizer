@@ -1,7 +1,10 @@
 package calculate
 
 import (
+	"math"
 	"strings"
+
+	"github.com/schollz/progressbar/v3"
 )
 
 type CharacterCounts map[string]int
@@ -98,11 +101,15 @@ func GeneratePowerStarters(list []string, fl FiveLetters, n int) []KeyVal {
 		intermediate []KeyVal
 	)
 
+	iters := math.Pow(float64(n), 5)
+
+	bar := progressbar.Default(int64(iters))
 	for a, one := range fl.Word[0].Letters[:n] {
 		for b, two := range fl.Word[1].Letters[:n] {
 			for c, three := range fl.Word[2].Letters[:n] {
 				for d, four := range fl.Word[3].Letters[:n] {
 					for e, five := range fl.Word[4].Letters[:n] {
+						bar.Add(1)
 						word := one.Key + two.Key + three.Key + four.Key + five.Key
 						sum := a + b + c + d + e
 						for _, val := range list {
