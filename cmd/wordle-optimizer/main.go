@@ -27,7 +27,7 @@ func main() {
 	master := append(choices, answers...)
 	sort.Strings(master)
 
-	fl := calculate.GetCharacterCounts(answers)
+	fl := calculate.GetCharacterCounts(master)
 
 	result := calculate.GeneratePowerStarters(answers, *fl, *depthPtr)
 
